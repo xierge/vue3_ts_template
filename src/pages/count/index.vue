@@ -2,8 +2,8 @@
     <div class="count">
         <span>{{ countStore.count }}</span>
         <br>
-        <button @click="increment">+1</button>
-        <button @click="countStore.decrement()">-1</button>
+        <el-button @click="increment">+1</el-button>
+        <el-button @click="countStore.decrement()">-1</el-button>
     </div>
 </template>
 

@@ -1,16 +1,24 @@
 <template>
-    <div>
-        <span v-for=" item in  menuList" :key="item.title" :class="{ menu_item: true, active: curRoute == item.href }">
-            <router-link :to="item.href">{{ item.title }} </router-link>
-        </span>
-    </div>
+    <el-menu
+            active-text-color="#ffd04b"
+            background-color="#545c64"
+            class="el-menu-vertical-demo"
+            :default-active="route.path"
+            text-color="#fff"
+          >
+            <el-menu-item v-for=" menu in  menuList " :index="menu.href" @click="target(menu.href)">
+              <el-icon><icon-menu /></el-icon>
+              <span> {{ menu.title }}</span>
+            </el-menu-item>
+          </el-menu>
 </template>
 
 <script lang="ts" setup>
 import { PropType, computed } from 'vue';
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute()
+const router = useRouter()
 
 const { menuList } = defineProps({
     menuList: {
@@ -18,9 +26,10 @@ const { menuList } = defineProps({
     }
 })
 
-const curRoute = computed(() => {
-    return route.path
-})
+const target = (href:string)=>{
+    router.push(href)
+}
+
 
 
 </script>
